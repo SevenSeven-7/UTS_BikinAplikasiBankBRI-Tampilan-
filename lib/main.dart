@@ -245,16 +245,109 @@ class BrimoHomePage extends StatelessWidget {
               ),
             ),
             
+            // --- TAHAP 4: PROMO & INFO ---
+            Padding(
+              padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 20),
+              child: Row(
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                children: [
+                  const Text(
+                    'Promo & Info',
+                    style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
+                  ),
+                  TextButton(
+                    onPressed: () {},
+                    child: const Text('Lihat Semua'),
+                  ),
+                ],
+              ),
+            ),
+            
+            SizedBox(
+              height: 150,
+              child: ListView(
+                scrollDirection: Axis.horizontal,
+                padding: const EdgeInsets.symmetric(horizontal: 20),
+                children: [
+                  _PromoBanner(
+                    color: Colors.blue[800]!,
+                    title: 'Pesta Rakyat Simpedes',
+                    subtitle: 'Nikmati kemeriahannya!',
+                  ),
+                  _PromoBanner(
+                    color: Colors.orange[700]!,
+                    title: 'Cashback 50% QRIS',
+                    subtitle: 'Belanja jadi lebih hemat!',
+                  ),
+                  _PromoBanner(
+                    color: Colors.teal[600]!,
+                    title: 'Promo Merchant BRI',
+                    subtitle: 'Diskon di berbagai resto.',
+                  ),
+                ],
+              ),
+            ),
+            
             const Padding(
-              padding: EdgeInsets.symmetric(vertical: 20),
+              padding: EdgeInsets.symmetric(vertical: 30),
               child: Text(
-                'Tahap 3: Menu Grid Selesai\n(Lanjutkan ke Tahap 4: Banner Promo?)',
+                'Tahap 4: Banner Promo Selesai\n(Lanjutkan ke Tahap 5: Navigasi Bawah?)',
                 textAlign: TextAlign.center,
                 style: TextStyle(color: Colors.grey),
               ),
             ),
           ],
         ),
+      ),
+    );
+  }
+}
+
+// Widget Helper untuk Banner Promo
+class _PromoBanner extends StatelessWidget {
+  final Color color;
+  final String title;
+  final String subtitle;
+
+  const _PromoBanner({
+    required this.color,
+    required this.title,
+    required this.subtitle,
+  });
+
+  @override
+  Widget build(BuildContext context) {
+    return Container(
+      width: 280,
+      margin: const EdgeInsets.only(right: 15),
+      padding: const EdgeInsets.all(20),
+      decoration: BoxDecoration(
+        color: color,
+        borderRadius: BorderRadius.circular(15),
+        gradient: LinearGradient(
+          colors: [color, color.withAlpha(200)], // Menggunakan color.withAlpha alih-alih opacity untuk kesederhanaan
+          begin: Alignment.topLeft,
+          end: Alignment.bottomRight,
+        ),
+      ),
+      child: Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        mainAxisAlignment: MainAxisAlignment.center,
+        children: [
+          Text(
+            title,
+            style: const TextStyle(
+              color: Colors.white,
+              fontSize: 18,
+              fontWeight: FontWeight.bold,
+            ),
+          ),
+          const SizedBox(height: 5),
+          Text(
+            subtitle,
+            style: const TextStyle(color: Colors.white, fontSize: 13),
+          ),
+        ],
       ),
     );
   }
