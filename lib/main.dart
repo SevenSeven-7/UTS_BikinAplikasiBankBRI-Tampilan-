@@ -291,13 +291,25 @@ class BrimoHomePage extends StatelessWidget {
             const Padding(
               padding: EdgeInsets.symmetric(vertical: 30),
               child: Text(
-                'Tahap 4: Banner Promo Selesai\n(Lanjutkan ke Tahap 5: Navigasi Bawah?)',
+                'Tahap 5: Navigasi Bawah Berhasil\n(Lanjutkan ke Tahap 6: Final Polishing?)',
                 textAlign: TextAlign.center,
                 style: TextStyle(color: Colors.grey),
               ),
             ),
           ],
         ),
+      ),
+      bottomNavigationBar: BottomNavigationBar(
+        type: BottomNavigationBarType.fixed,
+        selectedItemColor: const Color(0xFF00529C),
+        unselectedItemColor: Colors.grey,
+        currentIndex: 0,
+        items: const [
+          BottomNavigationBarItem(icon: Icon(Icons.home), label: 'Home'),
+          BottomNavigationBarItem(icon: Icon(Icons.list_alt), label: 'Mutasi'),
+          BottomNavigationBarItem(icon: Icon(Icons.notifications_active), label: 'Aktivitas'),
+          BottomNavigationBarItem(icon: Icon(Icons.person_outline), label: 'Akun'),
+        ],
       ),
     );
   }
