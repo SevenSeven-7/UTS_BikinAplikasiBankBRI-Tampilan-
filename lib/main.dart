@@ -153,7 +153,7 @@ class BrimoHomePage extends StatelessWidget {
                     style: TextStyle(color: Colors.white70, fontSize: 14),
                   ),
                   Text(
-                    'BUDI SETIAWAN'.toUpperCase(),
+                    'SYAMSUL ARIFIN'.toUpperCase(),
                     style: const TextStyle(
                       color: Colors.white,
                       fontSize: 18,
