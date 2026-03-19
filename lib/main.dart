@@ -78,9 +78,7 @@ class _BrimoSplashScreenState extends State<BrimoSplashScreen> {
               ],
             ),
             const SizedBox(height: 20),
-            const CircularProgressIndicator(
-              color: Colors.white,
-            ),
+            const CircularProgressIndicator(color: Colors.white),
           ],
         ),
       ),
@@ -163,7 +161,7 @@ class BrimoHomePage extends StatelessWidget {
                 ],
               ),
             ),
-            
+
             // Kartu Saldo (Transform digunakan untuk mengangkat kartu sedikit ke atas)
             Transform.translate(
               offset: const Offset(0, -40),
@@ -223,7 +221,10 @@ class BrimoHomePage extends StatelessWidget {
                               ),
                               Text(
                                 'BRI BritAma',
-                                style: TextStyle(color: Colors.grey, fontSize: 12),
+                                style: TextStyle(
+                                  color: Colors.grey,
+                                  fontSize: 12,
+                                ),
                               ),
                             ],
                           ),
@@ -235,7 +236,7 @@ class BrimoHomePage extends StatelessWidget {
                 ),
               ),
             ),
-            
+
             const Padding(
               padding: EdgeInsets.symmetric(horizontal: 20, vertical: 0),
               child: Column(
@@ -243,26 +244,56 @@ class BrimoHomePage extends StatelessWidget {
                   Row(
                     mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                     children: [
-                      _MenuIcon(icon: Icons.swap_horiz, label: 'Transfer', color: Colors.blue),
-                      _MenuIcon(icon: Icons.account_balance_wallet, label: 'BRIVA', color: Colors.orange),
-                      _MenuIcon(icon: Icons.phone_android, label: 'Pulsa/Data', color: Colors.green),
-                      _MenuIcon(icon: Icons.account_balance, label: 'E-Wallet', color: Colors.blueAccent),
+                      _MenuIcon(
+                        icon: Icons.swap_horiz,
+                        label: 'Transfer',
+                        color: Colors.blue,
+                      ),
+                      _MenuIcon(
+                        icon: Icons.account_balance_wallet,
+                        label: 'BRIVA',
+                        color: Colors.orange,
+                      ),
+                      _MenuIcon(
+                        icon: Icons.phone_android,
+                        label: 'Pulsa/Data',
+                        color: Colors.green,
+                      ),
+                      _MenuIcon(
+                        icon: Icons.account_balance,
+                        label: 'E-Wallet',
+                        color: Colors.blueAccent,
+                      ),
                     ],
                   ),
                   SizedBox(height: 20),
                   Row(
                     mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                     children: [
-                      _MenuIcon(icon: Icons.qr_code_scanner, label: 'QRIS', color: Colors.blue),
-                      _MenuIcon(icon: Icons.receipt_long, label: 'Tagihan', color: Colors.redAccent),
-                      _MenuIcon(icon: Icons.more_horiz, label: 'Lainnya', color: Colors.grey),
-                      SizedBox(width: 70), // Spacer agar tetap rapi jika jumlah kurang dari 4
+                      _MenuIcon(
+                        icon: Icons.qr_code_scanner,
+                        label: 'QRIS',
+                        color: Colors.blue,
+                      ),
+                      _MenuIcon(
+                        icon: Icons.receipt_long,
+                        label: 'Tagihan',
+                        color: Colors.redAccent,
+                      ),
+                      _MenuIcon(
+                        icon: Icons.more_horiz,
+                        label: 'Lainnya',
+                        color: Colors.grey,
+                      ),
+                      SizedBox(
+                        width: 70,
+                      ), // Spacer agar tetap rapi jika jumlah kurang dari 4
                     ],
                   ),
                 ],
               ),
             ),
-            
+
             // --- TAHAP 4: PROMO & INFO ---
             Padding(
               padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 20),
@@ -280,7 +311,7 @@ class BrimoHomePage extends StatelessWidget {
                 ],
               ),
             ),
-            
+
             SizedBox(
               height: 150,
               child: ListView(
@@ -305,7 +336,7 @@ class BrimoHomePage extends StatelessWidget {
                 ],
               ),
             ),
-            
+
             const SizedBox(height: 20),
           ],
         ),
@@ -318,8 +349,14 @@ class BrimoHomePage extends StatelessWidget {
         items: const [
           BottomNavigationBarItem(icon: Icon(Icons.home), label: 'Home'),
           BottomNavigationBarItem(icon: Icon(Icons.list_alt), label: 'Mutasi'),
-          BottomNavigationBarItem(icon: Icon(Icons.notifications_active), label: 'Aktivitas'),
-          BottomNavigationBarItem(icon: Icon(Icons.person_outline), label: 'Akun'),
+          BottomNavigationBarItem(
+            icon: Icon(Icons.notifications_active),
+            label: 'Aktivitas',
+          ),
+          BottomNavigationBarItem(
+            icon: Icon(Icons.person_outline),
+            label: 'Akun',
+          ),
         ],
       ),
     );
@@ -348,7 +385,10 @@ class _PromoBanner extends StatelessWidget {
         color: color,
         borderRadius: BorderRadius.circular(15),
         gradient: LinearGradient(
-          colors: [color, color.withAlpha(200)], // Menggunakan color.withAlpha alih-alih opacity untuk kesederhanaan
+          colors: [
+            color,
+            color.withAlpha(200),
+          ], // Menggunakan color.withAlpha alih-alih opacity untuk kesederhanaan
           begin: Alignment.topLeft,
           end: Alignment.bottomRight,
         ),
