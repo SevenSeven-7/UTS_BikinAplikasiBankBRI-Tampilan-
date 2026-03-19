@@ -133,10 +133,11 @@ class BrimoHomePage extends StatelessWidget {
       body: SingleChildScrollView(
         child: Column(
           children: [
-            // Bagian Biru di belakang kartu (opsional untuk estetika)
+            // Bagian Biru di belakang kartu dengan Greeting
             Container(
-              height: 80,
+              height: 120, // Dipertinggi sedikit untuk menampung teks greeting
               width: double.infinity,
+              padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 10),
               decoration: const BoxDecoration(
                 color: Color(0xFF00529C),
                 borderRadius: BorderRadius.only(
@@ -144,11 +145,28 @@ class BrimoHomePage extends StatelessWidget {
                   bottomRight: Radius.circular(30),
                 ),
               ),
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  const Text(
+                    'Selamat Pagi,',
+                    style: TextStyle(color: Colors.white70, fontSize: 14),
+                  ),
+                  Text(
+                    'BUDI SETIAWAN'.toUpperCase(),
+                    style: const TextStyle(
+                      color: Colors.white,
+                      fontSize: 18,
+                      fontWeight: FontWeight.bold,
+                    ),
+                  ),
+                ],
+              ),
             ),
             
             // Kartu Saldo (Transform digunakan untuk mengangkat kartu sedikit ke atas)
             Transform.translate(
-              offset: const Offset(0, -50),
+              offset: const Offset(0, -40),
               child: Padding(
                 padding: const EdgeInsets.symmetric(horizontal: 20),
                 child: Container(
@@ -288,14 +306,7 @@ class BrimoHomePage extends StatelessWidget {
               ),
             ),
             
-            const Padding(
-              padding: EdgeInsets.symmetric(vertical: 30),
-              child: Text(
-                'Tahap 5: Navigasi Bawah Berhasil\n(Lanjutkan ke Tahap 6: Final Polishing?)',
-                textAlign: TextAlign.center,
-                style: TextStyle(color: Colors.grey),
-              ),
-            ),
+            const SizedBox(height: 20),
           ],
         ),
       ),
