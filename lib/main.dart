@@ -378,6 +378,14 @@ class _BrimoHomePageState extends State<BrimoHomePage> {
           ),
         ],
       ),
+      // --- TAHAP PENINGKATAN 2: QRIS FAB (Materi Pertemuan 3 - Scaffold) ---
+      floatingActionButton: FloatingActionButton(
+        onPressed: () {},
+        backgroundColor: const Color(0xFF00529C),
+        shape: const CircleBorder(),
+        child: const Icon(Icons.qr_code_scanner, color: Colors.white, size: 30),
+      ),
+      floatingActionButtonLocation: FloatingActionButtonLocation.centerDocked,
     );
   }
 }
