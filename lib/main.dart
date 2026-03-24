@@ -305,23 +305,23 @@ class _BrimoHomePageState extends State<BrimoHomePage> {
             ),
 
             SizedBox(
-              height: 150,
+              height: 160,
               child: ListView(
                 scrollDirection: Axis.horizontal,
                 padding: const EdgeInsets.symmetric(horizontal: 20),
-                children: [
+                children: const [
                   _PromoBanner(
-                    color: Colors.blue[800]!,
+                    imageUrl: 'https://images.unsplash.com/photo-1513151233558-d860c5398176?w=500&auto=format&fit=crop', // Festival/Celebration
                     title: 'Pesta Rakyat Simpedes',
                     subtitle: 'Nikmati kemeriahannya!',
                   ),
                   _PromoBanner(
-                    color: Colors.orange[700]!,
+                    imageUrl: 'https://images.unsplash.com/photo-1556742111-a301076d9d18?w=500&auto=format&fit=crop', // Mobile Payment
                     title: 'Cashback 50% QRIS',
                     subtitle: 'Belanja jadi lebih hemat!',
                   ),
                   _PromoBanner(
-                    color: Colors.teal[600]!,
+                    imageUrl: 'https://images.unsplash.com/photo-1554118811-1e0d58224f24?w=500&auto=format&fit=crop', // Cafe/Dining
                     title: 'Promo Merchant BRI',
                     subtitle: 'Diskon di berbagai resto.',
                   ),
@@ -329,7 +329,7 @@ class _BrimoHomePageState extends State<BrimoHomePage> {
               ),
             ),
 
-            const SizedBox(height: 20),
+            const SizedBox(height: 50),
           ],
         ),
       ),
@@ -365,12 +365,12 @@ class _BrimoHomePageState extends State<BrimoHomePage> {
 
 // Widget Helper untuk Banner Promo
 class _PromoBanner extends StatelessWidget {
-  final Color color;
+  final String imageUrl;
   final String title;
   final String subtitle;
 
   const _PromoBanner({
-    required this.color,
+    required this.imageUrl,
     required this.title,
     required this.subtitle,
   });
@@ -380,37 +380,72 @@ class _PromoBanner extends StatelessWidget {
     return Container(
       width: 280,
       margin: const EdgeInsets.only(right: 15),
-      padding: const EdgeInsets.all(20),
       decoration: BoxDecoration(
-        color: color,
+        color: Colors.blue[800],
         borderRadius: BorderRadius.circular(15),
-        gradient: LinearGradient(
-          colors: [
-            color,
-            color.withAlpha(200),
-          ], // Menggunakan color.withAlpha alih-alih opacity untuk kesederhanaan
-          begin: Alignment.topLeft,
-          end: Alignment.bottomRight,
-        ),
       ),
-      child: Column(
-        crossAxisAlignment: CrossAxisAlignment.start,
-        mainAxisAlignment: MainAxisAlignment.center,
-        children: [
-          Text(
-            title,
-            style: const TextStyle(
-              color: Colors.white,
-              fontSize: 18,
-              fontWeight: FontWeight.bold,
+      child: ClipRRect(
+        borderRadius: BorderRadius.circular(15),
+        child: Stack(
+          children: [
+            // Layer 1: Background Image (Materi Pertemuan 3 - Image.network)
+            Image.network(
+              imageUrl,
+              width: 280,
+              height: 160,
+              fit: BoxFit.cover,
+              loadingBuilder: (context, child, loadingProgress) {
+                if (loadingProgress == null) return child;
+                return const Center(child: CircularProgressIndicator());
+              },
+              errorBuilder: (context, error, stackTrace) {
+                // Background Fallback jika gambar gagal dimuat
+                return Container(
+                  color: Colors.blue[800],
+                  child: const Center(
+                    child: Icon(Icons.image_not_supported, color: Colors.white),
+                  ),
+                );
+              },
             ),
-          ),
-          const SizedBox(height: 5),
-          Text(
-            subtitle,
-            style: const TextStyle(color: Colors.white, fontSize: 13),
-          ),
-        ],
+            // Layer 2: Overlay Gradien agar teks terbaca
+            Container(
+              decoration: BoxDecoration(
+                gradient: LinearGradient(
+                  begin: Alignment.bottomCenter,
+                  end: Alignment.topCenter,
+                  colors: [
+                    Colors.black.withOpacity(0.8),
+                    Colors.transparent,
+                  ],
+                ),
+              ),
+            ),
+            // Layer 3: Teks Promo
+            Padding(
+              padding: const EdgeInsets.all(15),
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                mainAxisAlignment: MainAxisAlignment.end,
+                children: [
+                  Text(
+                    title,
+                    style: const TextStyle(
+                      color: Colors.white,
+                      fontSize: 16,
+                      fontWeight: FontWeight.bold,
+                    ),
+                  ),
+                  const SizedBox(height: 5),
+                  Text(
+                    subtitle,
+                    style: const TextStyle(color: Colors.white70, fontSize: 12),
+                  ),
+                ],
+              ),
+            ),
+          ],
+        ),
       ),
     );
   }
