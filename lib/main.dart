@@ -256,59 +256,23 @@ class _BrimoHomePageState extends State<BrimoHomePage> {
               ),
             ),
 
-            const Padding(
-              padding: EdgeInsets.symmetric(horizontal: 20, vertical: 0),
-              child: Column(
+            // --- TAHAP PENINGKATAN 3: GRIDVIEW & OOP (Materi Pertemuan 2 & 4) ---
+            Padding(
+              padding: const EdgeInsets.symmetric(horizontal: 10),
+              child: GridView.count(
+                shrinkWrap: true,
+                physics: const NeverScrollableScrollPhysics(),
+                crossAxisCount: 4,
+                mainAxisSpacing: 10,
+                crossAxisSpacing: 0,
                 children: [
-                  Row(
-                    mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                    children: [
-                      _MenuIcon(
-                        icon: Icons.swap_horiz,
-                        label: 'Transfer',
-                        color: Colors.blue,
-                      ),
-                      _MenuIcon(
-                        icon: Icons.account_balance_wallet,
-                        label: 'BRIVA',
-                        color: Colors.orange,
-                      ),
-                      _MenuIcon(
-                        icon: Icons.phone_android,
-                        label: 'Pulsa/Data',
-                        color: Colors.green,
-                      ),
-                      _MenuIcon(
-                        icon: Icons.account_balance,
-                        label: 'E-Wallet',
-                        color: Colors.blueAccent,
-                      ),
-                    ],
-                  ),
-                  SizedBox(height: 20),
-                  Row(
-                    mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                    children: [
-                      _MenuIcon(
-                        icon: Icons.qr_code_scanner,
-                        label: 'QRIS',
-                        color: Colors.blue,
-                      ),
-                      _MenuIcon(
-                        icon: Icons.receipt_long,
-                        label: 'Tagihan',
-                        color: Colors.redAccent,
-                      ),
-                      _MenuIcon(
-                        icon: Icons.more_horiz,
-                        label: 'Lainnya',
-                        color: Colors.grey,
-                      ),
-                      SizedBox(
-                        width: 70,
-                      ), // Spacer agar tetap rapi jika jumlah kurang dari 4
-                    ],
-                  ),
+                   _MenuIcon(icon: Icons.swap_horiz, label: 'Transfer', color: Colors.blue),
+                   _MenuIcon(icon: Icons.account_balance_wallet, label: 'BRIVA', color: Colors.orange),
+                   _MenuIcon(icon: Icons.phone_android, label: 'Pulsa/Data', color: Colors.green),
+                   _MenuIcon(icon: Icons.account_balance, label: 'E-Wallet', color: Colors.blueAccent),
+                   _MenuIcon(icon: Icons.qr_code_scanner, label: 'QRIS', color: Colors.blue),
+                   _MenuIcon(icon: Icons.receipt_long, label: 'Tagihan', color: Colors.redAccent),
+                   _MenuIcon(icon: Icons.more_horiz, label: 'Lainnya', color: Colors.grey),
                 ],
               ),
             ),
