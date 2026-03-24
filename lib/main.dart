@@ -139,123 +139,132 @@ class _BrimoHomePageState extends State<BrimoHomePage> {
       body: SingleChildScrollView(
         child: Column(
           children: [
-            // Bagian Biru di belakang kartu dengan Greeting
-            Container(
-              height: 120, // Dipertinggi sedikit untuk menampung teks greeting
-              width: double.infinity,
-              padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 10),
-              decoration: const BoxDecoration(
-                color: Color(0xFF00529C),
-                borderRadius: BorderRadius.only(
-                  bottomLeft: Radius.circular(30),
-                  bottomRight: Radius.circular(30),
-                ),
-              ),
-              child: Column(
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: [
-                  const Text(
-                    'Selamat Pagi,',
-                    style: TextStyle(color: Colors.white70, fontSize: 14),
-                  ),
-                  Text(
-                    'SYAMSUL ARIFIN'.toUpperCase(),
-                    style: const TextStyle(
-                      color: Colors.white,
-                      fontSize: 18,
-                      fontWeight: FontWeight.bold,
-                    ),
-                  ),
-                ],
-              ),
-            ),
-
-            // Kartu Saldo (Transform digunakan untuk mengangkat kartu sedikit ke atas)
-            Transform.translate(
-              offset: const Offset(0, -40),
-              child: Padding(
-                padding: const EdgeInsets.symmetric(horizontal: 20),
-                child: Container(
+            // --- TAHAP PENINGKATAN 4: STACK & POSITIONED (Materi Pertemuan 4) ---
+            Stack(
+              clipBehavior: Clip.none,
+              alignment: Alignment.topCenter,
+              children: [
+                // Layer 1: Bagian Biru di belakang kartu dengan Greeting
+                Container(
+                  height: 140, 
                   width: double.infinity,
-                  padding: const EdgeInsets.all(20),
-                  decoration: BoxDecoration(
-                    color: Colors.white,
-                    borderRadius: BorderRadius.circular(20),
-                    boxShadow: [
-                      BoxShadow(
-                        color: Colors.black.withOpacity(0.1),
-                        blurRadius: 10,
-                        offset: const Offset(0, 5),
-                      ),
-                    ],
+                  padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 15),
+                  decoration: const BoxDecoration(
+                    color: Color(0xFF00529C),
+                    borderRadius: BorderRadius.only(
+                      bottomLeft: Radius.circular(30),
+                      bottomRight: Radius.circular(30),
+                    ),
                   ),
                   child: Column(
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
                       const Text(
-                        'Saldo Rekening Utama',
-                        style: TextStyle(color: Colors.grey, fontSize: 14),
+                        'Selamat Pagi,',
+                        style: TextStyle(color: Colors.white70, fontSize: 14),
                       ),
-                      const SizedBox(height: 5),
-                      Row(
-                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                        children: [
-                          Text(
-                            _isBalanceVisible ? 'Rp 1.000.000.000.000' : 'Rp •••••••••••••',
-                            style: const TextStyle(
-                              fontSize: 22,
-                              fontWeight: FontWeight.bold,
-                              color: Color(0xFF00529C),
-                            ),
-                          ),
-                          GestureDetector(
-                            onTap: () {
-                              // Materi Pertemuan 3: setState() untuk merubah UI
-                              setState(() {
-                                _isBalanceVisible = !_isBalanceVisible;
-                              });
-                            },
-                            child: Icon(
-                              _isBalanceVisible ? Icons.visibility : Icons.visibility_off,
-                              color: Colors.blue[300],
-                            ),
-                          ),
-                        ],
-                      ),
-                      const SizedBox(height: 10),
-                      const Divider(color: Colors.grey, thickness: 0.5),
-                      const SizedBox(height: 10),
-                      Row(
-                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                        children: [
-                          Column(
-                            crossAxisAlignment: CrossAxisAlignment.start,
-                            children: [
-                              const Text(
-                                '0012-01-000123-50-4',
-                                style: TextStyle(
-                                  fontWeight: FontWeight.bold,
-                                  fontSize: 14,
-                                ),
-                              ),
-                              Text(
-                                'BRI BritAma',
-                                style: TextStyle(
-                                  color: Colors.grey,
-                                  fontSize: 12,
-                                ),
-                              ),
-                            ],
-                          ),
-                          const Icon(Icons.copy, size: 18, color: Colors.grey),
-                        ],
+                      Text(
+                        'SYAMSUL ARIFIN'.toUpperCase(),
+                        style: const TextStyle(
+                          color: Colors.white,
+                          fontSize: 18,
+                          fontWeight: FontWeight.bold,
+                        ),
                       ),
                     ],
                   ),
                 ),
-              ),
+
+                // Layer 2: Kartu Saldo (Menggunakan Positioned alih-alih Transform)
+                Positioned(
+                  top: 80, // Menempelkan kartu di atas background biru dengan offset 80
+                  child: Padding(
+                    padding: const EdgeInsets.symmetric(horizontal: 20),
+                    child: Container(
+                      width: MediaQuery.of(context).size.width - 40,
+                      padding: const EdgeInsets.all(20),
+                      decoration: BoxDecoration(
+                        color: Colors.white,
+                        borderRadius: BorderRadius.circular(20),
+                        boxShadow: [
+                          BoxShadow(
+                            color: Colors.black.withOpacity(0.1),
+                            blurRadius: 10,
+                            offset: const Offset(0, 5),
+                          ),
+                        ],
+                      ),
+                      child: Column(
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        children: [
+                          const Text(
+                            'Saldo Rekening Utama',
+                            style: TextStyle(color: Colors.grey, fontSize: 14),
+                          ),
+                          const SizedBox(height: 5),
+                          Row(
+                            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                            children: [
+                              Text(
+                                _isBalanceVisible ? 'Rp 1.000.000.000.000' : 'Rp •••••••••••••',
+                                style: const TextStyle(
+                                  fontSize: 22,
+                                  fontWeight: FontWeight.bold,
+                                  color: Color(0xFF00529C),
+                                ),
+                              ),
+                              GestureDetector(
+                                onTap: () {
+                                  // Materi Pertemuan 3: setState() untuk merubah UI
+                                  setState(() {
+                                    _isBalanceVisible = !_isBalanceVisible;
+                                  });
+                                },
+                                child: Icon(
+                                  _isBalanceVisible ? Icons.visibility : Icons.visibility_off,
+                                  color: Colors.blue[300],
+                                ),
+                              ),
+                            ],
+                          ),
+                          const SizedBox(height: 10),
+                          const Divider(color: Colors.grey, thickness: 0.5),
+                          const SizedBox(height: 10),
+                          Row(
+                            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                            children: [
+                              Column(
+                                crossAxisAlignment: CrossAxisAlignment.start,
+                                children: [
+                                  const Text(
+                                    '0012-01-000123-50-4',
+                                    style: TextStyle(
+                                      fontWeight: FontWeight.bold,
+                                      fontSize: 14,
+                                    ),
+                                  ),
+                                  const Text(
+                                    'BRI BritAma',
+                                    style: TextStyle(
+                                      color: Colors.grey,
+                                      fontSize: 12,
+                                    ),
+                                  ),
+                                ],
+                              ),
+                              const Icon(Icons.copy, size: 18, color: Colors.grey),
+                            ],
+                          ),
+                        ],
+                      ),
+                    ),
+                  ),
+                ),
+              ],
             ),
 
+            // Spacer untuk memberi ruang karena Stack + Positioned tidak mengambil space layout otomatis
+            const SizedBox(height: 110),
             // --- TAHAP PENINGKATAN 3: GRIDVIEW & OOP (Materi Pertemuan 2 & 4) ---
             Padding(
               padding: const EdgeInsets.symmetric(horizontal: 10),
