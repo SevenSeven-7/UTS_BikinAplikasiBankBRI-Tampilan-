@@ -86,9 +86,17 @@ class _BrimoSplashScreenState extends State<BrimoSplashScreen> {
   }
 }
 
-// --- TAHAP 1: HOME PAGE ---
-class BrimoHomePage extends StatelessWidget {
+// --- TAHAP 1: HOME PAGE (DIUBAH MENJADI STATEFULWIDGET) ---
+class BrimoHomePage extends StatefulWidget {
   const BrimoHomePage({super.key});
+
+  @override
+  State<BrimoHomePage> createState() => _BrimoHomePageState();
+}
+
+class _BrimoHomePageState extends State<BrimoHomePage> {
+  // Shortcut: Materi Pertemuan 3 - StatefulWidget (Data yang bisa berubah)
+  bool _isBalanceVisible = true;
 
   @override
   Widget build(BuildContext context) {
@@ -192,27 +200,38 @@ class BrimoHomePage extends StatelessWidget {
                       Row(
                         mainAxisAlignment: MainAxisAlignment.spaceBetween,
                         children: [
-                          const Text(
-                            'Rp 1.000.000.000.000',
-                            style: TextStyle(
+                          Text(
+                            _isBalanceVisible ? 'Rp 1.000.000.000.000' : 'Rp •••••••••••••',
+                            style: const TextStyle(
                               fontSize: 22,
                               fontWeight: FontWeight.bold,
                               color: Color(0xFF00529C),
                             ),
                           ),
-                          Icon(Icons.visibility, color: Colors.blue[300]),
+                          GestureDetector(
+                            onTap: () {
+                              // Materi Pertemuan 3: setState() untuk merubah UI
+                              setState(() {
+                                _isBalanceVisible = !_isBalanceVisible;
+                              });
+                            },
+                            child: Icon(
+                              _isBalanceVisible ? Icons.visibility : Icons.visibility_off,
+                              color: Colors.blue[300],
+                            ),
+                          ),
                         ],
                       ),
                       const SizedBox(height: 10),
                       const Divider(color: Colors.grey, thickness: 0.5),
                       const SizedBox(height: 10),
-                      const Row(
+                      Row(
                         mainAxisAlignment: MainAxisAlignment.spaceBetween,
                         children: [
                           Column(
                             crossAxisAlignment: CrossAxisAlignment.start,
                             children: [
-                              Text(
+                              const Text(
                                 '0012-01-000123-50-4',
                                 style: TextStyle(
                                   fontWeight: FontWeight.bold,
@@ -228,7 +247,7 @@ class BrimoHomePage extends StatelessWidget {
                               ),
                             ],
                           ),
-                          Icon(Icons.copy, size: 18, color: Colors.grey),
+                          const Icon(Icons.copy, size: 18, color: Colors.grey),
                         ],
                       ),
                     ],
